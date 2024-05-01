@@ -29,31 +29,20 @@ import {
   AccountsMenuIcon,
   AuditLogsMenuIcon,
   BucketsMenuIcon,
-  CallHomeMenuIcon,
   DocumentationIcon,
   GroupsMenuIcon,
-  HealthMenuIcon,
   IdentityMenuIcon,
-  InspectMenuIcon,
-  LambdaIcon,
-  LicenseIcon,
   LockOpenIcon,
   LoginIcon,
   LogsMenuIcon,
   MetricsMenuIcon,
   MonitoringMenuIcon,
   ObjectBrowserIcon,
-  PerformanceMenuIcon,
-  ProfileMenuIcon,
-  RecoverIcon,
-  SettingsIcon,
-  TiersIcon,
   TraceMenuIcon,
   UsersMenuIcon,
   WatchIcon,
 } from "mds";
 import { hasPermission } from "../../common/SecureComponent";
-import EncryptionIcon from "../../icons/SidebarMenus/EncryptionIcon";
 import EncryptionStatusIcon from "../../icons/SidebarMenus/EncryptionStatusIcon";
 
 const permissionsValidation = (item: IMenuItem) => {
@@ -125,104 +114,6 @@ export const validRoutes = (
       name: "Documentation",
       icon: <DocumentationIcon />,
       forceDisplay: true,
-    },
-    {
-      group: "Administrator",
-      name: "Buckets",
-      id: "buckets",
-      path: IAM_PAGES.BUCKETS,
-      icon: <BucketsMenuIcon />,
-      forceDisplay: true,
-    },
-    {
-      group: "Administrator",
-      name: "Policies",
-      id: "policies",
-      path: IAM_PAGES.POLICIES,
-      icon: <AccessMenuIcon />,
-    },
-    {
-      group: "Administrator",
-      name: "Identity",
-      id: "identity",
-      icon: <IdentityMenuIcon />,
-      children: [
-        {
-          id: "users",
-          path: IAM_PAGES.USERS,
-          customPermissionFnc: () =>
-            hasPermission(CONSOLE_UI_RESOURCE, adminUserPermissions) ||
-            hasPermission(S3_ALL_RESOURCES, adminUserPermissions) ||
-            hasPermission(CONSOLE_UI_RESOURCE, [IAM_SCOPES.ADMIN_ALL_ACTIONS]),
-          name: "Users",
-          icon: <UsersMenuIcon />,
-          fsHidden: ldapIsEnabled,
-        },
-        {
-          id: "groups",
-          path: IAM_PAGES.GROUPS,
-          name: "Groups",
-          icon: <GroupsMenuIcon />,
-          fsHidden: ldapIsEnabled,
-        },
-        {
-          name: "OpenID",
-          id: "openID",
-          path: IAM_PAGES.IDP_OPENID_CONFIGURATIONS,
-          icon: <LockOpenIcon />,
-        },
-        {
-          name: "LDAP",
-          id: "ldap",
-          path: IAM_PAGES.IDP_LDAP_CONFIGURATIONS,
-          icon: <LoginIcon />,
-        },
-      ],
-    },
-    {
-      group: "Administrator",
-      name: "Monitoring",
-      id: "tools",
-      icon: <MonitoringMenuIcon />,
-      children: [
-        {
-          name: "Metrics",
-          id: "monitorMetrics",
-          path: IAM_PAGES.DASHBOARD,
-          icon: <MetricsMenuIcon />,
-        },
-        {
-          name: "Logs ",
-          id: "monitorLogs",
-          path: IAM_PAGES.TOOLS_LOGS,
-          icon: <LogsMenuIcon />,
-        },
-        {
-          name: "Audit",
-          id: "monitorAudit",
-          path: IAM_PAGES.TOOLS_AUDITLOGS,
-          icon: <AuditLogsMenuIcon />,
-        },
-        {
-          name: "Trace",
-          id: "monitorTrace",
-          path: IAM_PAGES.TOOLS_TRACE,
-          icon: <TraceMenuIcon />,
-        },
-        {
-          name: "Watch",
-          id: "monitorWatch",
-          icon: <WatchIcon />,
-          path: IAM_PAGES.TOOLS_WATCH,
-        },
-        {
-          name: "Encryption",
-          id: "monitorEncryption",
-          path: IAM_PAGES.KMS_STATUS,
-          icon: <EncryptionStatusIcon />,
-          fsHidden: !kmsIsEnabled,
-        },
-      ],
     },
   ];
 
